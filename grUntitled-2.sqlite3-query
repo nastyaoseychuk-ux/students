@@ -1,0 +1,20 @@
+-- database: ./student.db
+
+CREATE TABLE students (
+    student_id INT,
+    name VARCHAR(50),
+    age INT
+);
+
+CREATE TABLE age (
+    student_id INT,
+    subject VARCHAR(50),
+    grade FLOAT
+);
+
+SELECT age.subject, AVG(age.grade) AS average_grade
+FROM students
+JOIN age
+    ON students.student_id = age.student_id
+WHERE students.age <= 20
+GROUP BY age.subject;
